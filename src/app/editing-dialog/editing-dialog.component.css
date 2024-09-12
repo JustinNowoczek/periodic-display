@@ -1,0 +1,16 @@
+.dialog-main {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+mat-form-field {
+  width: 90%;
+}

@@ -1,0 +1,39 @@
+<h1>Element Table</h1>
+@switch (fetchStatus) { @case ('error') {
+<h4>Could not fetch elements!</h4>
+} @case ('success') {
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput #inputRef (keyup)="handleInputChange(inputRef.value)" />
+</mat-form-field>
+
+<table mat-table [dataSource]="filteredElements">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>Number</th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [innerHTML]="element.position | highlight : filter"
+    ></td>
+  </ng-container>
+
+  @for (column of displayedColumns.slice(1); track $index) {<ng-container
+    [matColumnDef]="column"
+  >
+    <th mat-header-cell *matHeaderCellDef>{{ column | titlecase }}</th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      (click)="changeField(column, element.position - 1, element[column])"
+      [innerHTML]="element[column] | highlight : filter"
+    ></td>
+  </ng-container>
+  }
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+} @default {
+<h4>Loading...</h4>
+} }

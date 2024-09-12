@@ -1,0 +1,10 @@
+<div mat-dialog-content class="dialog-main">
+  <mat-form-field>
+    <mat-label>Edit the {{ data.column | titlecase }} here</mat-label>
+    <input matInput [(ngModel)]="inputData" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onSubmit()">Submit</button>
+</div>
