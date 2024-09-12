@@ -30,6 +30,7 @@ export class ElementTableComponent {
 
   @Input() elementPromise: Promise<PeriodicElementFetchType> | null = null;
 
+  isWaiting = false;
   timeoutId: any;
   filter = '';
   periodicElements: PeriodicElementType[] = [];
@@ -99,12 +100,15 @@ export class ElementTableComponent {
   }
 
   handleInputChange(newFilter: string) {
+    this.isWaiting = true;
+
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
 
     this.timeoutId = setTimeout(() => {
       this.setFilter(newFilter.toLowerCase());
+      this.isWaiting = false;
     }, 2000);
   }
 }

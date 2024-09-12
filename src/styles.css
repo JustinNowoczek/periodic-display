@@ -8,3 +8,12 @@ body {
 span {
   border-bottom: 2px solid #005cbb;
 }
+
+.isWaiting {
+  mat-label,
+  .mdc-line-ripple::after {
+    transition: border-color 1s, color 1s !important;
+    border-color: #bb7900 !important;
+    color: #bb7900;
+  }
+}

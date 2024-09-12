@@ -2,11 +2,11 @@
 @switch (fetchStatus) { @case ('error') {
 <h4>Could not fetch elements!</h4>
 } @case ('success') {
-<mat-form-field>
-  <mat-label>Filter</mat-label>
+<mat-form-field [class.isWaiting]="isWaiting">
+  <mat-label>@if (isWaiting) { Waiting... } @else {Filter}</mat-label>
   <input matInput #inputRef (keyup)="handleInputChange(inputRef.value)" />
 </mat-form-field>
-
+@if (filteredElements.length) {
 <table mat-table [dataSource]="filteredElements">
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef>Number</th>
@@ -29,11 +29,11 @@
     ></td>
   </ng-container>
   }
-
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
-
-} @default {
+} @else {
+<h4>Filter too specific!</h4>
+} } @default {
 <h4>Loading...</h4>
 } }
