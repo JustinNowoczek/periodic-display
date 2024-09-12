@@ -105,6 +105,6 @@ export class ElementTableComponent {
 
     this.timeoutId = setTimeout(() => {
       this.setFilter(newFilter.toLowerCase());
-    }, 20);
+    }, 2000);
   }
 }
